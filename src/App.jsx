@@ -8,6 +8,7 @@ import Methodology from './components/Methodology'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import { LanguageProvider } from './contexts/LanguageContext'
+import { ThemeProvider } from './contexts/ThemeContext'
 
 function App() {
   const [isVisible, setIsVisible] = useState(false)
@@ -29,18 +30,20 @@ function App() {
   }, [])
 
   return (
-    <LanguageProvider>
-      <div className="App">
-        <Header />
-        <Hero />
-        <About />
-        <Services />
-        <Projects />
-        <Methodology />
-        <Contact />
-        <Footer />
-      </div>
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <div className="App">
+          <Header />
+          <Hero />
+          <About />
+          <Services />
+          <Projects />
+          <Methodology />
+          <Contact />
+          <Footer />
+        </div>
+      </LanguageProvider>
+    </ThemeProvider>
   )
 }
 

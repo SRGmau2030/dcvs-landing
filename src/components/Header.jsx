@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
-import { Menu, X, Globe } from 'lucide-react'
+import { useTheme } from '../contexts/ThemeContext'
+import { Menu, X, Globe, Sun, Moon } from 'lucide-react'
 
 const Header = () => {
   const { language, toggleLanguage, content } = useLanguage()
+  const { isDark, toggleTheme } = useTheme()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
@@ -24,7 +26,7 @@ const Header = () => {
   }
 
   return (
-    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
+    <header className={`header ${isScrolled ? 'scrolled' : ''} ${isDark ? 'dark' : ''}`}>
       <style jsx>{`
         .header {
           position: fixed;
@@ -38,9 +40,19 @@ const Header = () => {
           transition: all 0.3s ease;
         }
         
+        .header.dark {
+          background: rgba(23, 23, 23, 0.95);
+          border-bottom-color: var(--border-dark);
+        }
+        
         .header.scrolled {
           background: rgba(255, 255, 255, 0.98);
           box-shadow: var(--shadow-md);
+        }
+        
+        .header.scrolled.dark {
+          background: rgba(23, 23, 23, 0.98);
+          box-shadow: var(--shadow-md-dark);
         }
         
         .nav-container {
@@ -57,12 +69,17 @@ const Header = () => {
           font-weight: 800;
           color: var(--primary-dark);
           text-decoration: none;
+          transition: color 0.3s ease;
+        }
+        
+        .dark .logo {
+          color: var(--primary-light);
         }
         
         .nav-links {
           display: flex;
           align-items: center;
-          gap: 2rem;
+          gap: 1.5rem;
           list-style: none;
         }
         
@@ -74,8 +91,41 @@ const Header = () => {
           cursor: pointer;
         }
         
+        .dark .nav-link {
+          color: var(--text-light);
+        }
+        
         .nav-link:hover {
           color: var(--primary-bright);
+        }
+        
+        .theme-toggle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 44px;
+          height: 44px;
+          background: transparent;
+          border: 1px solid var(--border);
+          border-radius: 0.5rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          color: var(--text-primary);
+        }
+        
+        .dark .theme-toggle {
+          border-color: var(--border-dark);
+          color: var(--text-light);
+        }
+        
+        .theme-toggle:hover {
+          background: var(--surface);
+          border-color: var(--primary-bright);
+          transform: scale(1.05);
+        }
+        
+        .dark .theme-toggle:hover {
+          background: var(--surface-dark);
         }
         
         .language-toggle {
@@ -91,9 +141,24 @@ const Header = () => {
           color: var(--text-primary);
         }
         
+        .dark .language-toggle {
+          border-color: var(--border-dark);
+          color: var(--text-light);
+        }
+        
         .language-toggle:hover {
           background: var(--surface);
           border-color: var(--primary-bright);
+        }
+        
+        .dark .language-toggle:hover {
+          background: var(--surface-dark);
+        }
+        
+        .controls {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
         }
         
         .menu-toggle {
@@ -102,6 +167,24 @@ const Header = () => {
           border: none;
           cursor: pointer;
           color: var(--text-primary);
+          width: 44px;
+          height: 44px;
+          align-items: center;
+          justify-content: center;
+          border-radius: 0.5rem;
+          transition: all 0.3s ease;
+        }
+        
+        .dark .menu-toggle {
+          color: var(--text-light);
+        }
+        
+        .menu-toggle:hover {
+          background: var(--surface);
+        }
+        
+        .dark .menu-toggle:hover {
+          background: var(--surface-dark);
         }
         
         .mobile-menu {
@@ -116,6 +199,12 @@ const Header = () => {
           display: none;
         }
         
+        .dark .mobile-menu {
+          background: var(--background-dark);
+          border-bottom-color: var(--border-dark);
+          box-shadow: var(--shadow-lg-dark);
+        }
+        
         .mobile-menu.open {
           display: block;
         }
@@ -127,13 +216,35 @@ const Header = () => {
           gap: 1rem;
         }
         
+        .mobile-controls {
+          display: flex;
+          gap: 1rem;
+          margin-top: 1rem;
+          padding-top: 1rem;
+          border-top: 1px solid var(--border);
+        }
+        
+        .dark .mobile-controls {
+          border-top-color: var(--border-dark);
+        }
+        
+        .mobile-controls .theme-toggle,
+        .mobile-controls .language-toggle {
+          flex: 1;
+          justify-content: center;
+        }
+        
         @media (max-width: 768px) {
           .nav-links {
             display: none;
           }
           
           .menu-toggle {
-            display: block;
+            display: flex;
+          }
+          
+          .controls {
+            display: none;
           }
         }
       `}</style>
@@ -148,11 +259,17 @@ const Header = () => {
           <li><a className="nav-link" onClick={() => scrollToSection('projects')}>{content.nav.projects}</a></li>
           <li><a className="nav-link" onClick={() => scrollToSection('methodology')}>{content.nav.methodology}</a></li>
           <li><a className="nav-link" onClick={() => scrollToSection('contact')}>{content.nav.contact}</a></li>
+        </ul>
+
+        <div className="controls">
+          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+            {isDark ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
           <button className="language-toggle" onClick={toggleLanguage}>
             <Globe size={18} />
             {language === 'es' ? 'ES' : 'EN'}
           </button>
-        </ul>
+        </div>
 
         <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -166,13 +283,16 @@ const Header = () => {
             <li><a className="nav-link" onClick={() => scrollToSection('projects')}>{content.nav.projects}</a></li>
             <li><a className="nav-link" onClick={() => scrollToSection('methodology')}>{content.nav.methodology}</a></li>
             <li><a className="nav-link" onClick={() => scrollToSection('contact')}>{content.nav.contact}</a></li>
-            <li>
-              <button className="language-toggle" onClick={toggleLanguage}>
-                <Globe size={18} />
-                {language === 'es' ? 'ES' : 'EN'}
-              </button>
-            </li>
           </ul>
+          <div className="mobile-controls">
+            <button className="theme-toggle" onClick={toggleTheme}>
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            <button className="language-toggle" onClick={toggleLanguage}>
+              <Globe size={16} />
+              {language === 'es' ? 'ES' : 'EN'}
+            </button>
+          </div>
         </div>
       </nav>
     </header>

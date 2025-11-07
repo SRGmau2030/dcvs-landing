@@ -1,4 +1,5 @@
 :root {
+  /* Light theme variables */
   --primary-dark: #23307D;
   --primary-bright: #27A1D9;
   --primary-light: #7DC7E8;
@@ -20,6 +21,29 @@
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
+[data-theme="dark"] {
+  /* Dark theme variables */
+  --primary-dark: #7DC7E8;
+  --primary-bright: #27A1D9;
+  --primary-light: #23307D;
+  --primary-accent: #0EA5E9;
+  --secondary-accent: #27A1D9;
+  --background: #0F172A;
+  --surface: #1E293B;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-light: #CBD5E1;
+  --border: #334155;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -36,6 +60,7 @@ body {
   color: var(--text-primary);
   background: var(--background);
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -46,6 +71,7 @@ body {
 
 .section {
   padding: 5rem 0;
+  transition: background-color 0.3s ease;
 }
 
 .section-title {
@@ -55,6 +81,7 @@ body {
   margin-bottom: 1rem;
   color: var(--primary-dark);
   position: relative;
+  transition: color 0.3s ease;
 }
 
 .section-title::after {
@@ -67,6 +94,7 @@ body {
   height: 4px;
   background: linear-gradient(90deg, var(--primary-bright), var(--primary-light));
   border-radius: 2px;
+  transition: background 0.3s ease;
 }
 
 .section-subtitle {
@@ -77,6 +105,7 @@ body {
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  transition: color 0.3s ease;
 }
 
 .btn {
@@ -108,6 +137,7 @@ body {
   background: transparent;
   color: var(--primary-dark);
   border: 2px solid var(--primary-dark);
+  transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
@@ -117,7 +147,7 @@ body {
 }
 
 .card {
-  background: white;
+  background: var(--surface);
   border-radius: 1rem;
   padding: 2rem;
   box-shadow: var(--shadow-md);
@@ -156,6 +186,21 @@ body {
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Dark mode specific adjustments */
+[data-theme="dark"] .card {
+  background: var(--surface);
+}
+
+[data-theme="dark"] .btn-secondary {
+  color: var(--primary-light);
+  border-color: var(--primary-light);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background: var(--primary-light);
+  color: var(--background);
 }
 
 @media (max-width: 768px) {
