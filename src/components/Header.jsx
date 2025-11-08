@@ -198,11 +198,11 @@ const Header = () => {
           padding: 1rem;
           display: none;
         }
-        
+
         .dark .mobile-menu {
-          background: var(--background-dark);
+          background: rgba(23, 23, 23, 0.95);
           border-bottom-color: var(--border-dark);
-          box-shadow: var(--shadow-lg-dark);
+          box-shadow: var(--shadow-lg);
         }
         
         .mobile-menu.open {
