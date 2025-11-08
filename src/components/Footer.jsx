@@ -1,8 +1,10 @@
 import React from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useTheme } from '../contexts/ThemeContext'
 
 const Footer = () => {
   const { content } = useLanguage()
+  const { isDark } = useTheme()
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
@@ -13,7 +15,7 @@ const Footer = () => {
 
   return (
     <footer style={{
-      background: 'var(--primary-dark)',
+      background: isDark ? '#1e293b' : 'var(--primary-dark)',
       color: 'white',
       padding: '3rem 0 2rem'
     }}>

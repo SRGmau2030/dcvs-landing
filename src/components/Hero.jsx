@@ -1,9 +1,11 @@
 import React from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useTheme } from '../contexts/ThemeContext'
 import { ArrowRight, Building2, TrendingUp, Users } from 'lucide-react'
 
 const Hero = () => {
   const { content } = useLanguage()
+  const { isDark } = useTheme()
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
@@ -17,7 +19,9 @@ const Hero = () => {
       <style jsx>{`
         .hero {
           min-height: 100vh;
-          background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-accent) 100%);
+          background: ${isDark
+            ? 'linear-gradient(135deg, #1e293b 0%, #334155 100%)'
+            : 'linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-accent) 100%)'};
           display: flex;
           align-items: center;
           position: relative;
