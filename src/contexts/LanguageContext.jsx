@@ -35,7 +35,9 @@ export const LanguageProvider = ({ children }) => {
       },
       about: {
         title: 'Sobre DCVS',
-        description: 'Somos una empresa especializada en bienes raíces, desarrollo inmobiliario y soluciones personalizadas para empresarios y negocios en expansión. Nuestra misión es crear comunidades prósperas y sostenibles que combinen diseño, innovación y responsabilidad social. Nuestra visión es contribuir al progreso regional e internacional a través de proyectos inmobiliarios con propósito.',
+        description: 'Somos una empresa especializada en bienes raíces, desarrollo inmobiliario y soluciones personalizadas para empresarios y negocios en expansión.',
+        mission: 'Crear comunidades prósperas y sostenibles que combinen diseño, innovación y responsabilidad social.',
+        vision: 'Contribuir al progreso regional e internacional a través de proyectos inmobiliarios con propósito.',
         values: {
           title: 'Nuestros Valores',
           integrity: { title: 'Integridad', desc: 'Actuamos con honestidad y transparencia.' },
@@ -118,7 +120,9 @@ export const LanguageProvider = ({ children }) => {
       },
       about: {
         title: 'About DCVS',
-        description: 'We are a company specialized in real estate, property development, and customized solutions for entrepreneurs and growing businesses. Our mission is to create prosperous and sustainable communities that combine design, innovation, and social responsibility. Our vision is to contribute to regional and international progress through purposeful real estate projects.',
+        description: 'We are a company specialized in real estate, property development, and customized solutions for entrepreneurs and growing businesses.',
+        mission: 'To create prosperous and sustainable communities that combine design, innovation, and social responsibility.',
+        vision: 'To contribute to regional and international progress through purposeful real estate projects.',
         values: {
           title: 'Our Values',
           integrity: { title: 'Integrity', desc: 'We act with honesty and transparency.' },

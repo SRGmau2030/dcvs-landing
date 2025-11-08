@@ -19,7 +19,65 @@ const About = () => {
       <div className="container">
         <h2 className="section-title fade-in">{content.about.title}</h2>
         <p className="section-subtitle fade-in">{content.about.description}</p>
-        
+
+        <div className="about-mission-vision fade-in">
+          <div className="about-block mission-block">
+            <h3 className="about-block-title">Misión</h3>
+            <p className="about-block-text">{content.about.mission}</p>
+          </div>
+          <div className="about-block vision-block">
+            <h3 className="about-block-title">Visión</h3>
+            <p className="about-block-text">{content.about.vision}</p>
+          </div>
+        </div>
+
+        <style jsx>{`
+          .about-mission-vision {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+          }
+          .about-block {
+            flex: 1;
+            background: var(--surface);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            border-left: 6px solid var(--primary-bright);
+            margin-bottom: 0;
+            transition: background 0.3s, color 0.3s;
+          }
+          .vision-block {
+            border-left: 6px solid var(--primary-accent);
+          }
+          .about-block-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--primary-dark);
+          }
+          .about-block-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+          }
+          @media (max-width: 900px) {
+            .about-mission-vision {
+              flex-direction: column;
+            }
+          }
+          .dark .about-block {
+            background: var(--surface-dark);
+            box-shadow: var(--shadow-lg-dark);
+          }
+          .dark .about-block-title {
+            color: #38bdf8;
+          }
+          .dark .about-block-text {
+            color: #e0e7ef;
+          }
+        `}</style>
+
         <div className="grid grid-2 fade-in" style={{marginBottom: '4rem'}}>
           <div>
             <img 
