@@ -135,7 +135,7 @@ const Projects = () => {
           
           <div style={{ textAlign: 'center', marginTop: '2rem' }}>
             <a 
-              href="https://dohmi.com" 
+              href="https://dohmi.net" 
               target="_blank" 
               rel="noopener noreferrer"
               className="btn btn-primary"
